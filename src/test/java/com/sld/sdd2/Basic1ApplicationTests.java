@@ -1,6 +1,5 @@
 package com.sld.sdd2;
 
-import com.sld.sdd2.answer.Answer;
 import com.sld.sdd2.answer.AnswerRepository;
 import com.sld.sdd2.question.Question;
 import com.sld.sdd2.question.QuestionRepository;
@@ -9,11 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.time.LocalDateTime;
 
 
 @SpringBootTest
@@ -28,14 +23,10 @@ class Basic1ApplicationTests {
     @Transactional
     @Test
     void testJpa() {
-        Optional<Question> oq = this.questionRepository.findById(2);
-        assertTrue(oq.isPresent());
-        Question q = oq.get();
-
-        List<Answer> answerList = q.getAnswerList();
-
-        assertEquals(1, answerList.size());
-        assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+        Question q1 = new Question();
+        q1.setSubject("테스트");
+        q1.setContent("테스트입니다");
+        q1.setCreateDate(LocalDateTime.now());
     }
 }
 

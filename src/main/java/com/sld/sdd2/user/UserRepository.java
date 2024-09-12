@@ -1,6 +1,9 @@
 package com.sld.sdd2.user;
 
-import org.hibernate.type.descriptor.converter.spi.JpaAttributeConverter;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaAttributeConverter<SiteUser, Long> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<SiteUser, Long> {
+    Optional<SiteUser> findByusername(String username);
 }
